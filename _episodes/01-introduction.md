@@ -9,7 +9,7 @@ questions:
 objectives:
 - gain an overview of different types of visualization technologies
 keypoints:
-- decision often centered around: should I use a GUI or script? 
+- "decision often centered around should I use a GUI or script?"
 ---
 ### Overview:
 
