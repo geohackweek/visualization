@@ -3,11 +3,11 @@ title: "Introduction to dataShader"
 teaching: 20
 exercises: 0
 questions:
-- When traditional GIS tools break down due to data volume, what options do I have to visualize data? 
+- "When traditional GIS tools break down due to data volume, what options do I have to visualize data?" 
 objectives:
-- Visualize and interact with large amounts of data at the speed of thought.  
+- "Visualize and interact with large amounts of data at the speed of thought."  
 keypoints:
-- DataShader is one of new python based tools that allow you to develop a data processing pipline, while visualizing data in real time.  
+- "DataShader is one of new python based tools that allow you to develop a data processing pipline, while visualizing data in real time."  
 ---
 
 ## Motivation 
