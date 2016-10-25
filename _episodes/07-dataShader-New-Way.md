@@ -30,7 +30,7 @@ Pyproj is used to reproject the data later.
 from pyproj import Proj, transform
 ```
 
-Finally, you import the data 
+Finally, you import dataShader
 
 ```python
 import datashader as ds
