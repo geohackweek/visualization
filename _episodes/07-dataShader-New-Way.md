@@ -30,6 +30,8 @@ Pyproj is used to reproject the data later.
 from pyproj import Proj, transform
 ```
 
+Finally, you import the data 
+
 ```python
 import datashader as ds
 from datashader import transfer_functions as tf
