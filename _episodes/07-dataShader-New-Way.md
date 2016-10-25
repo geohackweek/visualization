@@ -22,8 +22,15 @@ First, you need to install bokeh and datashader, then import them
 ```python
 import pandas as pd
 import numpy as np
-from pyproj import Proj, transform
+```
 
+Pyproj is used to reproject the data later.
+
+```python
+from pyproj import Proj, transform
+```
+
+```python
 import datashader as ds
 from datashader import transfer_functions as tf
 from datashader.bokeh_ext import InteractiveImage
@@ -33,6 +40,11 @@ from datashader.colors import colormap_select, Greys9, Hot, viridis, inferno
 from IPython.core.display import HTML, display
 
 from bokeh.plotting import figure, output_notebook, output_file, show
+```
+
+[Stamen Maps](http://maps.stamen.com/) offers up beautiful map tiles that can be accessed by Bokeh. 
+
+```python 
 from bokeh.tile_providers import STAMEN_TERRAIN
 from bokeh.tile_providers import STAMEN_TONER
 from bokeh.embed import file_html
