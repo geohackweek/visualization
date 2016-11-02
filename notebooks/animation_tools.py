@@ -41,7 +41,11 @@ try:
     from JSAnimation import IPython_display
     found_JSAnim = True
 except:
-    found_JSAnim = False
+    try:
+        from clawpack.visclaw.JSAnimation import IPython_display
+        found_JSAnim = True
+    except:
+        found_JSAnim = False
 
 def make_plotdir(plotdir='_plots', clobber=True):
     """
