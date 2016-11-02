@@ -6,3 +6,7 @@ RUN conda install lxml
 RUN pip install cesiumpy
 RUN pip install pykml
 RUN pip install -e git+git@github.com:clawpack/clawpack.git@v5.3.1#egg=clawpack
+RUN mkdir /notebooks
+COPY /notebooks/ /notebooks
+RUN mkdir /geoclaw_output
+COPY /geoclaw_output/ /geoclaw_output
