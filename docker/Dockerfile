@@ -1,11 +1,16 @@
-
 FROM continuumio/anaconda
-RUN conda install mpl_toolkits
+RUN apt-get install -y tar git curl nano wget dialog net-tools build-essential
+RUN apt-get install -y gfortran
+RUN conda install basemap
 RUN conda install -c conda-forge ipyleaflet
 RUN conda install lxml
 RUN pip install cesiumpy
 RUN pip install pykml
-RUN pip install -e git+git@github.com:clawpack/clawpack.git@v5.3.1#egg=clawpack
+RUN mkdir src/
+COPY /src/ /src
+RUN python /src/clawpack-5.3.1/setup.py install
+RUN echo 'export CLAW=/src/clawpack-5.3.1' >> ~/.bashrc
+RUN echo 'export FC=gfortran' >> ~/.bashrc
 RUN mkdir /notebooks
 COPY /notebooks/ /notebooks
 RUN mkdir /geoclaw_output
