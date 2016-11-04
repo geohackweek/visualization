@@ -29,6 +29,9 @@ These tools will eventually be incorporated into VisClaw,
 
 """
 
+# use Python 3 style print function rather than Python 2 print statements:
+from __future__ import print_function 
+
 from IPython.display import display
 from matplotlib import image, animation
 from matplotlib import pyplot as plt
@@ -47,6 +50,7 @@ except:
     except:
         found_JSAnim = False
 
+
 def make_plotdir(plotdir='_plots', clobber=True):
     """
     Utility function to create a directory for storing a sequence of plot
@@ -62,7 +66,7 @@ def make_plotdir(plotdir='_plots', clobber=True):
             raise IOError('*** Cannot clobber existing directory %s' % plotdir)
     else:
         os.system("mkdir %s" % plotdir)
-    print "Figure files for each frame will be stored in ", plotdir
+    print("Figure files for each frame will be stored in ", plotdir)
 
 
 def save_frame(frameno, plotdir='_plots', fname_base='frame', format='png',
@@ -77,7 +81,7 @@ def save_frame(frameno, plotdir='_plots', fname_base='frame', format='png',
     filename = '%s/%s%s.%s' % (plotdir, fname_base, str(frameno).zfill(5), format)
     plt.savefig(filename, **kwargs)
     if verbose:
-        print "Saved ",filename
+        print("Saved ",filename)
 
 
 def make_anim(plotdir, fname_pattern='frame*.png', figsize=(10,6), dpi=None):
@@ -165,7 +169,7 @@ def make_html(anim, file_name='anim.html', title=None, raw_html='', \
     html_file.write(raw_html)
     html_file.write(html_body)
     html_file.close()
-    print "Created %s" % file_name
+    print("Created %s" % file_name)
 
 
 def read_images(plotdir, fname_pattern='*.png'):
@@ -188,7 +192,7 @@ def save_images(images, figsize=(8,6), plotdir='_plots', clobber=True, \
         plt.savefig(filename, format=format, **kwargs)
         plt.close(fig)
         if verbose:
-            print "Saved ",filename
+            print("Saved ",filename)
 
 def save_figs(figs, plotdir='_plots', clobber=True, \
                 fname_base='frame', format='png', verbose=False, **kwargs):
@@ -199,7 +203,7 @@ def save_figs(figs, plotdir='_plots', clobber=True, \
         fig.savefig(filename, format=format, **kwargs)
         plt.close(fig)
         if verbose:
-            print "Saved ",filename
+            print("Saved ",filename)
 
 
 def make_image(fig, **kwargs):
@@ -240,7 +244,7 @@ def interact_animate_images(images, figsize=(10,6), manual=False, TextInput=Fals
 
     if TextInput:
         if TextInput:
-            print "Valid frameno values: from %i to %i" % (0,len(images)-1)
+            print("Valid frameno values: from %i to %i" % (0,len(images)-1))
         widget = ipywidgets.IntText(min=0,max=len(images)-1, value=0)
     else:
         widget = ipywidgets.IntSlider(min=0,max=len(images)-1, value=0)
@@ -262,7 +266,7 @@ def interact_animate_figs(figs, manual=False, TextInput=False):
 
     if manual:
         if TextInput:
-            print "Valid frameno values: from %i to %i" % (0,len(figs)-1)
+            print("Valid frameno values: from %i to %i" % (0,len(figs)-1))
         interact_manual(display_frame, frameno=widget)
     else:
         interact(display_frame, frameno=widget)
