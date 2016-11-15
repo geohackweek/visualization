@@ -33,4 +33,28 @@ This tutorial is going to present visualizing geospatial data in three tiers.
   - Cesium 
   - dataShader
 
+### Worldwide Telescope
 
+This PC-only application can be downloaded [here](http://worldwidetelescope.org "WWT main site"). It uses your computer's GPU to do two things: Render the earth in high resolution (as good as 2 meters) with topography; and render data structures with as many as six dimensions in that geospatial context. 
+
+The benefits of using Worldwide Telescope and the drawbacks are outlined below. For a faster video intro to what is possible
+using this remarkable (free) application we suggest YouTube, particularly [this video](https://youtu.be/JLu6caZmbRg "Excel Add In for WWT"). An extended tutorial is [here](https://youtu.be/Nkardcd5vo0 "WWT extended tutorial for earth science"). Contact Rob Fatland at the University of Washington for a conversational perspective.
+
+#### Advantages
+* Easy exchange of tabular data: CSV files, Excel spreadsheets, WWT
+* Time control: Enables rendering time-series geospatial data
+* Control brightness, color, marker style, time persistence of point-like data
+* Control opacity, color, location, time persistence of vector data
+* Overlay (drape) raster imagery over terrain
+* Almost-completely-free control of perspective
+* Time looping
+* Can build narrative stories called Tours
+* Application includes views beyond earth: Various planets including Mars and the Moon, solar system, galaxy, universe, ...
+* WWT features an API for data exchange
+* Layer Manager enables you to control what you are looking at and how you look at it
+
+#### Disadvantages
+* Basics require time to master (hours) 
+* Advanced features require a considerable investment of time (days to weeks to months)
+* Requires you to operate a PC or install a PC emulator
+* WWT has idiosyncracies that can try your patience; it is sort of the Mazerati of free geospatial visualization apps.
