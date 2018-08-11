@@ -1,4 +1,6 @@
-# visualization
+# visualization  
+
+**updated for 2018**
 
 These are files to build a github website hosting the [geohackweek](https://geohackweek.github.io/) multidimensional array [tutorial](https://geohackweek.github.io/visualization). Github automatically renders these files using Ruby to build the website.
 
