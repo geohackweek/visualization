@@ -6,8 +6,11 @@ encoding: utf-8
 # What kind of thing is this ("workshop" or "lesson")?
 kind: "lesson"
 
+# copyright year
+copy_year: "2018"
+
 # Overall title for pages.
-title: "visualization"
+title: "Geospatial Data Visualization"
 
 # Repository URL (without trailing slash).
 repo: https://github.com/geohackweek/visualization
