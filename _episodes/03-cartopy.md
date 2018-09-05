@@ -73,7 +73,7 @@ This creates a plot as follows;
         </td>
     </tr>
 </table>
-
+ 
 Simple! To change the projection of the data, all we need to do is modify that first line. 
            
     ax = plt.axes(projection = ccrs.LambertConformal())  
