@@ -9,6 +9,9 @@ objectives:
 - Set up a basemap using <code>cartopy</code>
 - Change projections on basemap.
 - Understand interface between standard <code>matplotlib</code> plotting and <code>cartopy</code>.
+keypoints:
+- "Cartopy can easily manage projections."
+- "A few simple modifications to `matplotlib` code (namely the `projection` keyword) can turn any matplotlib plot into a spatially-aware one."
 ---
 
 >## Notebook
@@ -89,3 +92,67 @@ Simple! To change the projection of the data, all we need to do is modify that f
         </td>
     </tr>
 </table>
+
+### A Local Example
+
+Let's compare projections around Seattle. As with many places, there are local specific projections which are commonly used in a particular area of interest. Those, around here, are Washington North ([EPSG:2926](http://epsg.io/2926)) and Washington South ([EPSG:2927](http://epsg.io/2927))
+
+Let's define some helpful constants:
+
+    WASHINGTON_NORTH = 2926
+    WASHINGTON_SOUTH = 2927
+    SEATTLE_BOUNDS = [-122.4596959,-122.2244331,47.4919119,47.734145]
+    WASHINGTON_BOUNDS = [-124.849,-116.9156,45.5435,49.0024]
+    SEATTLE_CENTER = (-122.3321, 47.6062)
+
+Here's the first projection: 
+
+    fig = plt.figure(figsize=(8, 8)) 
+    ax = plt.axes(projection=ccrs.epsg(WASHINGTON_NORTH))
+    #ax.set_extent(<NO EXTENT>) # not setting bounds means we can see the full extent of the projected space.
+    ax.set_title("Washington – North (epsg:2926)")
+    ax.add_feature(states_feature)
+    ax.annotate('Seattle', xy=SEATTLE_CENTER, xycoords=ccrs.PlateCarree()._as_mpl_transform(ax), color='red',
+                ha='left', va='center')
+    ax.gridlines(linestyle=":")
+    ax.tissot(lats=range(43, 51), lons=range(-124, -116), alpha=0.4, rad_km=20000, color='orange')
+    plt.show()
+
+![a-wanorth](/assets/img/wanorth.png)
+
+Second: 
+
+    fig = plt.figure(figsize=(8, 8)) 
+    ax = plt.axes(projection=ccrs.epsg(WASHINGTON_SOUTH))
+    #ax.set_extent(<NO EXTENT>) # not setting bounds means we can see the full extent of the projected space.
+    ax.set_title("Washington – North (epsg:2926)")
+    ax.add_feature(states_feature)
+    ax.annotate('Seattle', xy=SEATTLE_CENTER, xycoords=ccrs.PlateCarree()._as_mpl_transform(ax), color='red',
+                ha='left', va='center')
+    ax.gridlines(linestyle=":")
+    ax.tissot(lats=range(43, 51), lons=range(-124, -116), alpha=0.4, rad_km=20000, color='orange')
+    plt.show()
+
+![B-wasouth](/assets/img/wasouth.png)
+
+What's the difference? There's really only one. Check out line 2. We changed `WASHINGTON_NORTH` to `WASHINGTON_SOUTH`. Those are variables containing the EPSG codes as defined above. That's all we needed to change the projection. 
+
+For comparison, let's look at the Mercator projection:
+
+    fig = plt.figure(figsize=(8, 8)) 
+    ax = plt.axes(projection=_DEFAULT_PROJECTION)
+    ax.set_extent(WASHINGTON_BOUNDS) # not setting bounds means we can see the full extent of the projected space.
+    ax.set_title("Washington – Web Mercator Reference (epsg:3857)")
+    ax.annotate('Seattle', xy=SEATTLE_CENTER, xycoords=ccrs.PlateCarree()._as_mpl_transform(ax), color='red',
+                ha='left', va='center')
+    ax.add_feature(states_feature)
+    gl = ax.gridlines(linestyle=":", draw_labels=True)
+    ax.tissot(lats=range(43, 51), lons=range(-124, -116), alpha=0.4, rad_km=20000, color='orange')
+
+![c-wamercator](/assets/img/wamercator.png)
+
+Notice: we've left off the `ax.set_extent` function for the plots of the Washington-specific projections. This tells Cartopy to perform its default behavior, which is to plot the entire extent of the projected space.
+
+You can see that each projection is for a small portion of the planet (northern and southern Washington, respectively). This illustrates an important point about projections: most of them are defined for a specific, discrete region, and therefore one should choose their projection carefully. **cartopy will throw an error if you attempt to plot a geometry in a projection which it cannot project that geometry into!** (try it). 
+
+Since the majority of projections baked in to cartopy are for the entire earth, you don't have to worry about that very much. However, some projections are better-suited to displaying small slices of the planet rather than the whole thing at once. These cartographic details will be better covered elsewhere. 

@@ -50,6 +50,12 @@ Some Examples ([comic](https://xkcd.com/977/)):
         <td>Winkel-Tripel (National Geographic maps)</td>
     </tr>
 </table>
+See [here](https://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e) for a nice visualization of different projections by github user [`syntagmatic`](https://github.com/syntagmatic). 
+
+
+>## EPSG Codes 
+> Each of these projections has been assigned a code by the European Petroleum Survey Group (EPSG), which has established itself as a projection authority. This has made using specific projections quite simple, as one can refer to them by their EPSG code. The EPSG code for the Web Mercator projection (used by Google Maps and Bing Maps), for example, is EPSG:3857. You can explore projections and find your neighborhood's favorite at http://epsg.io, which is also the database cartopy uses to lookup projections by their EPSG codes.
+{: .callout}
 
 ## This Sounds Complicated!
 
