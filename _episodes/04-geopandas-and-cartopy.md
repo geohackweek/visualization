@@ -24,7 +24,7 @@ For this example we'll be using a shapefile of U.S. National Parks.
 
 For the sake of visualization, let's present just one park. 
 
-    park = data[data.UNIT_NAME == "Canyonlands"]
+    park = data[data.UNIT_NAME == "Olympic"]
 
 >## CRS
 > It's important that you know the coordinate reference system (CRS) that your data is projected in. Many times, data loaded from shapefiles (or other vector formats) have their CRS embedded; loading these data using geopandas will make the CRS available in the `.crs` attribute of the `GeoDataFrame` (e.g. `data.crs`). Geopandas expresses CRSs as EPSG codes.
@@ -36,7 +36,7 @@ As in the previous episode we need to establish **the projection of our map**. T
 
 For our example we'll use the Lambert Conformal projection: 
 
-    ax = plt.axes(projection = ccrs.LambertConformal(central_latitude = XXXXX))
+    ax = plt.axes(projection = ccrs.LambertConformal()))
 
 >## Under The Hood
 > What's happening here, really? When you add the `projection` keyword argument to the generic `plt.axes` function, you're instructing `matplotlib` (via `cartopy`) to, instead of creating a regular `AxesSubplot` object to plot data on, create a `GeoAxesSubplot` object. This special set of axes is *projection-aware*, and is responsible for the necessary transformation of data from source projection to the specified axes projection.
@@ -51,7 +51,21 @@ Since we're working with vector data here, we'll be using `ax.add_geometries`. T
 
 For our example, we can therefore write: 
 
-    ax.add_geometries(geodata.geometry, crs = ccrs.PlateCarree()) # for Lat/Lon data.
+    ax.add_geometries(park.geometry, crs = ccrs.PlateCarree()) # for Lat/Lon data.
+
+We also want to make sure we can actually see the data. To do this, we can set the extent of the map from the boundaries of the whole GeoDataFrame using `total_bounds`.
+
+    bounds= park.total_bounds
+    ax.set_extent([bounds[0], bounds[2], bounds[1], bounds[3]])
+
+All together the code looks like this: 
+
+    bounds= park.total_bounds
+    ax = plt.axes(projection = ccrs.LambertConformal())
+    ax.set_extent([bounds[0], bounds[2], bounds[1], bounds[3]])
+    ax.add_geometries(park.geometry, crs=ccrs.PlateCarree())
+
+![olympic.png](/assets/img/olympic.png)
 
 ### 4. Add Context
 
@@ -77,5 +91,28 @@ This downloads the land dataset at 10m scale (from the physical collection in Na
 To add the above `land` to the map, all we need to do is the following:
 
     ax.add_feature(land)
+
+Here's the full code: 
+
+    bounds= park.total_bounds
+    fig = plt.figure(figsize=(8,8))
+    ax = plt.axes(projection = ccrs.LambertConformal())
+    ax.set_extent([bounds[0], bounds[2], bounds[1], bounds[3]])
+    ax.gridlines()
+
+    ax.add_geometries(park.geometry, crs=ccrs.PlateCarree(), facecolor='none', edgecolor='k')
+
+    land = cf.NaturalEarthFeature(
+        category='physical',
+        name='land',
+        scale='10m',
+        facecolor=cf.COLORS['land'],
+        alpha=0.5)
+    ax.add_feature(land)
+
+    ax.scatter(447087.3, 5294290.9, transform = ccrs.UTM(10), color='red')
+    ax.text(447087.3 + 2000, 5294290.9, "Mt. Olympus", transform = ccrs.UTM(10), color='red')
+
+![oly-ad](/assets/img/olympic-addl.png)
 
 Matplotlib and cartopy represent a robust pairing of data visualization tools for creating impressive, customizable static maps. Next we'll move onto a quick tutorial to create moveable, interactive maps with your own data. 
