@@ -15,7 +15,7 @@ keypoints:
 ---
 
 >## Notebook
->This tutorial is accompanied by a Jupyter notebook, which can be found [here](#). **TODO: put link**
+>This tutorial is accompanied by a Jupyter notebook, which can be found [here](https://github.com/geohackweek/tutorial_contents/tree/master/visualization/notebooks).
 {: .prereq}
 
 
