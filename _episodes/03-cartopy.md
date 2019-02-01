@@ -121,7 +121,7 @@ Here's the first projection:
 <table align='center'>
     <tr align='center' style="width: 100%">
         <td>
-            <img src="{{site_root}}/assets/img/wanorth.png" style="width: 100%"/>
+            <img src="{{site.root}}/assets/img/wanorth.png" style="width: 100%"/>
         </td>
     </tr>
 </table>
@@ -144,7 +144,7 @@ Second:
 <table align='center'>
     <tr align='center' style="width: 100%">
         <td>
-            <img src="{{site_root}}/assets/img/wasouth.png" style="width: 100%"/>
+            <img src="{{site.root}}/assets/img/wasouth.png" style="width: 100%"/>
         </td>
     </tr>
 </table>
@@ -168,7 +168,7 @@ For comparison, let's look at the Mercator projection:
 <table align='center'>
     <tr align='center' style="width: 100%">
         <td>
-            <img src="{{site_root}}/assets/img/wamercator.png" style="width: 100%"/>
+            <img src="{{site.root}}/assets/img/wamercator.png" style="width: 100%"/>
         </td>
     </tr>
 </table>
